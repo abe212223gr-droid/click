@@ -1,0 +1,18 @@
+function sendTap() {
+  fetch('https://click-nlz8.onrender.com/api/tap', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      telegramId: window.Telegram.WebApp.initDataUnsafe.user.id,
+      firstName: window.Telegram.WebApp.initDataUnsafe.user.first_name
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    // በስክሪኑ ላይ ነጥቡን ማሳያ
+    document.getElementById('scoreDisplay').innerText = data.score;
+  })
+  .catch(err => console.error("Error:", err));
+}
